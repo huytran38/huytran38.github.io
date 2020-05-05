@@ -21,18 +21,30 @@ In observing the wind data, a nearly perfect linear relationship can be seen bet
 
 <img src="images/wind1.png?raw=true"/>
 
-### 3. 
+### 3. Time series model
+
+Initial exploratory analysis was done in RStudio to identify starting autoregression, moving average, seasonality, and other parameters. Indepedent variable (electricity consumed) was tested for normality. Using the ACF, PACF, and EACF plots, potential seasonal parameters were identified, and also validated using the auto.arima() function. Models were then constructed using the SARIMAX() function from Python statsmodels library. The best performing parameters from the analysis done in RStudio were used to construct models, and the exogenous variables were reintroduced (weather conditions, calendar day features, etc.). The models were then tested against a test set using the RMSE and explained variance scores for evaluation. The parameters of each model were tweaked until the highest performing model was produced. 
+
+Based on the low explained variance, models built for a couple of sectors (food service, residential) were considered unsuccessful. This might be due to limited data (one year worth) of city sectors' electricity consumption, while consumption appeared to be highly volatile during summer months.
+
+<div class="row">
+  <div class="column">
+    <img src="images/FoodService_Consum.png?raw=true">
+  </div>
+  <div class="column">
+    <img src="images/Residential_Consum.png?raw=true">
+  </div>
+</div>
+
+### 4. 
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+
 
 ```javascript
 if (isAwesome){
   return true
 }
 ```
-
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
-
-### 4. 
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
