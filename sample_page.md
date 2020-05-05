@@ -15,7 +15,9 @@ In order to get the files into a more comprehensible and cohesive format, some p
 
 Once the files were merged, each was aggregated (using mean) by day to simplify the problem and smooth some of the noise coming from the weather data. The consumption data was subset into eight separate files, each representing a single sector of usage (residential, K-12 schools, etc.). Feature engineering was used to create additional calendar variables (such as ‘Weekend’ and ‘Season’), and dummy variables were extracted from categorical variables (‘Month’, ‘Day’, ‘Day of week’). All files except for the scenario file were split into 80/20 train/test sets.
 
-<img src="images/datasetsvars.jpg?raw=true"/>
+<p align="center">
+  <img src="images/datasetsvars.jpg?raw=true">
+</p>
 
 In observing the wind data, a nearly perfect linear relationship can be seen between wind speed and electricity production, which is no surprise; the greater the speed of the wind, the higher the production of electricity (Figure: Electricity Production by Wind Speed). However, from the plot, the level of energy starts to plateau after wind energy reaches a certain high level.
 
