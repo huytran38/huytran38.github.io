@@ -27,14 +27,7 @@ Initial exploratory analysis was done in RStudio to identify starting autoregres
 
 Based on the low explained variance, models built for a couple of sectors (food service, residential) were considered unsuccessful. This might be due to limited data (one year worth) of city sectors' electricity consumption, while consumption appeared to be highly volatile during summer months.
 
-<div class="row">
-  <div class="column">
-    <img src="images/FoodService_Consum.png?raw=true">
-  </div>
-  <div class="column">
-    <img src="images/Residential_Consum.png?raw=true">
-  </div>
-</div>
+<img src="images/FoodService_Consum.png?raw=true" width="425"/> <img src="images/Residential_Consum.png?raw=true" width="425"/> 
 
 ### 4. 
 
