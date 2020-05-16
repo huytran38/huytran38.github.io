@@ -48,16 +48,17 @@ In the case of decision trees and random forests, the training and fitting of mo
 From building and training random forest models, there was a consistent pattern of good performances based on RMSE and R-squared scores. As a result, random forest was chosen as the main algorithm for all ten datasets, including wind production, solar production, and the eight consumption sectors. As one potential random forest model for each of these datasets was identified, it was further tuned and tested using test sets. Models for wind and solar production were more straightforward, as they are two separate models. However, this is not the case for Consumption sectors, as the project’s objective is to build a model for Power City’s consumption as a whole. The best random forest model identified for each consumption sector had different parameters’ values compared to the other sectors’ best random forest models. In order to provide a more parsimonious solution, all eight sectors’ random forest models were compared and manually tested to find the best combination of parameters for a final model that can maintain or improve predictive performance for each sector’s consumption. In order to evaluate the final random forests model, the predicted value for each calendar day (average of electricity consumption of the day) was calculated by summing up the predicted values of all eight sectors’ consumption on that day. The last step was to use this model and make predictions using scenario dataset. These predictions are used as a tool to demonstrate the functionality of random forest model for Power City’s daily average energy consumption. 
 
 ### **Results**
-As a regression problem, the most common metric to use to evaluate the performance is the RMSE value. This metric indicates if the model can be good at predicting the observed data. Another performance metric to consider is the R2 value. R2 is a statistical measure of how close the data is to the regression line. This also tells how the target variable can be explained by the predictors from the model. Table 5 shows the RMSE and R2 evaluation of the highest performing model constructed by every algorithm on all ten datasets. The highest performing models overall for each data set are highlighted in yellow. 
+As a regression problem, the most common metric to use to evaluate the performance is the RMSE value. This metric indicates if the model can be good at predicting the observed data. Another performance metric to consider is the R2 value. R2 is a statistical measure of how close the data is to the regression line. This also tells how the target variable can be explained by the predictors from the model. Table 5 shows the RMSE and R2 evaluation of the highest performing model constructed by every algorithm on all ten datasets. The highest performing models overall for each data set are highlighted in yellow.
 
 <p align="center">
   <img src="images/Eval_Table.jpg?raw=true"/>
 </p>
 
-```javascript
-if (isAwesome){
-  return true
-}
-```
+The model had the lowest RMSE value (16,812) and the highest R2 value (0.77) compared to the other models used. The parameters used to create the model required a minimum of six samples before splitting the tree, two-hundred trees, and used the Mean Absolute Error as a criterion to determine the quality of the split. When looking at the model’s feature importance, we found cloud coverage (55.2%), humidity (9.4%), solar elevation (6.8%), dew point (4.7%), and temperature (4.4%) as the top five features from model.
+
+A similar approach was performed to determine the best predictive model for wind energy production. Both AdaBoost and random forest were found to be the best models where they had the same r-squared value (0.98) and a nearly identical RMSE value (1,550 for AdaBoost and 1,558 for random forest). After much consideration which model to choose, the random forest model was chosen since the model for the solar energy production was also a random forest model. The parameters used to create the model required seven samples before splitting the tree and two-hundred trees. The feature importance for this model was only Wind Speed (99%) as the other predictors were dummy variables from feature engineering mentioned previously.
+
+
+
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
