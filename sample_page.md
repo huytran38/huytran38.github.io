@@ -50,7 +50,9 @@ From building and training random forest models, there was a consistent pattern 
 ### **Results**
 As a regression problem, the most common metric to use to evaluate the performance is the RMSE value. This metric indicates if the model can be good at predicting the observed data. Another performance metric to consider is the R2 value. R2 is a statistical measure of how close the data is to the regression line. This also tells how the target variable can be explained by the predictors from the model. Table 5 shows the RMSE and R2 evaluation of the highest performing model constructed by every algorithm on all ten datasets. The highest performing models overall for each data set are highlighted in yellow. 
 
-<img src="images/Eval_Table.jpg?raw=true" width="425"/> <img src="images/Residential_Consum.png?raw=true" width="425"/>
+<p align="center">
+  <img src="images/Eval_Table.jpg?raw=true"/>
+</p>
 
 ```javascript
 if (isAwesome){
