@@ -13,3 +13,5 @@ Unlike training set, test set has 336 columns, which is an aggregation of the 14
 From the multivariate line chart (Multi-variables line chart), the first point that stands out is that the majority of climate measurements, except for ‘wv’, ‘maxwv’, and ‘wd’, have some sort of rhythm or pattern over time. Line chart of variable T (Temperature line chart) demonstrates the yearly pattern that I vaguely see in Graph 1. It’s worth noting that there are sets of variables that appear to have very similar pattern, such as: T -Tpot-Tdew; VPmax-VPact-VPdef; H2OC-rho. Is this a signal that these variable sets indicate correlations? The correlation matrix (Correlation matrix) shows that there is no strong positive correlation (the strongest is in pink, which is slightly higher than 0.25), but there are candidates of reasonably high negative correlations (the strongest is dark blue, which is about -0.9). It appears that variable ‘rho’ has strong negative correlations with many variables, among those are T-Tpot-Tdew, and VPmax-VPact-VPdef. 
 
 
+
+
