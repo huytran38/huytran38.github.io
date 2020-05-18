@@ -9,7 +9,7 @@
 
 ---
 [Weather Forecast](/sample_page1)
-<img src="images/Capture5.png?raw=true"/>
+<img src="images/Capture5.PNG?raw=true"/>
 
 ---
 [Project 3 Title](http://example.com/)
