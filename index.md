@@ -8,8 +8,8 @@
 <img src="images/ModelsEvalSectors.jpg?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Weather Forecast](/sample_page1)
+<img src="images/Capture4.png?raw=true"/>
 
 ---
 [Project 3 Title](http://example.com/)
