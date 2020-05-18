@@ -2,13 +2,11 @@
 
 ---
 
-### Category Name 1 
-
-[Renewable Energy Predictive Modeling](/sample_page)
+### [Renewable Energy Predictive Modeling](/sample_page)
 <img src="images/ModelsEvalSectors.jpg?raw=true"/>
 
 ---
-[Weather Forecast](/sample_page1)
+### [Weather Forecast](/sample_page1)
 <img src="images/Capture5.PNG?raw=true"/>
 
 ---
