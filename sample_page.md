@@ -24,7 +24,34 @@ powercity_weather_consumption['Date_Time_Stamp'] = pd.to_datetime(dict(year=2015
 
 Only two files had missing data: the scenario year weather and the solar array weather. Most of the missing values were filled in using the median value of the two weeks preceding and following the missing data point (median was preferred over mean due to the count of zeros in the data). The only exception was filling in values for Precipitation and Pressure variables, since many consecutive values were missing; for those values, the average of previous years was used to complete the data.
 
-Once the files were merged, each was aggregated (using mean) by day to simplify the problem and smooth some of the noise coming from the weather data. The consumption data was subset into eight separate files, each representing a single sector of usage (residential, K-12 schools, etc.). Feature engineering was used to create additional calendar variables (such as ‘Weekend’ and ‘Season’), and dummy variables were extracted from categorical variables (‘Month’, ‘Day’, ‘Day of week’). All files except for the scenario file were split into 80/20 train/test sets.
+```
+#replace missing values for Cloud_Cover_Fraction using the median value of the two weeks preceding and following the missing data point
+rows = len(powercity_weather_scenario)
+
+for i in range(rows):
+    val = powercity_weather_scenario.loc[i][5]
+    #print(val)
+    if np.isnan(val):
+        #print(val)
+        powercity_weather_scenario['Cloud_Cover_Fraction'] = powercity_weather_scenario['Cloud_Cover_Fraction'].replace(powercity_weather_scenario['Cloud_Cover_Fraction'][i],
+                                                                                                                        powercity_weather_scenario['Cloud_Cover_Fraction'][i-336:i+336].median())
+```
+
+Once the files were merged, each was aggregated (using mean) by day to simplify the problem and smooth some of the noise coming from the weather data. The consumption data was subset into eight separate files, each representing a single sector of usage (residential, K-12 schools, etc.). 
+
+```
+consump_fs = consump[consump.Sector == 'FOOD_SERVICE']
+consump_g = consump[consump.Sector == 'GROCERY']
+consump_hc = consump[consump.Sector == 'HEALTH_CARE']
+consump_k12 = consump[consump.Sector == 'K12_SCHOOLS']
+consump_l = consump[consump.Sector == 'LODGING']
+consump_o = consump[consump.Sector == 'OFFICE']
+consump_r = consump[consump.Sector == 'RESIDENTIAL']
+consump_sar = consump[consump.Sector == 'STAND_ALONE_RETAIL']
+
+```
+
+Feature engineering was used to create additional calendar variables (such as ‘Weekend’ and ‘Season’), and dummy variables were extracted from categorical variables (‘Month’, ‘Day’, ‘Day of week’). All files except for the scenario file were split into 80/20 train/test sets. Below is a summary table of the main four(4) aggregated datasets and their corresponding features. 
 
 <p align="center">
   <img src="images/datasetsvars.jpg?raw=true">
