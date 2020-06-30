@@ -9,6 +9,7 @@ The data used for this project originated from fourteen files of raw data regard
 a. Weather Condition Features: solar elevation, cloud cover, dew point, humidity, precipitable water, temperature, visibility, wind speed, and pressure
 b. Calendar Day Features: day of the week, holiday, school day
 
+
 ### 2. Pre-processing & Exploratory Analysis
 
 In order to get the files into a more comprehensible and cohesive format, some preliminary features were added and others were normalized in order to merge files. Initially separated time varibles (day, month, hour) were combined to generate a single DateTime column. Only two files had missing data: the scenario year weather and the solar array weather. Most of the missing values were filled in using the median value of the two weeks preceding and following the missing data point (median was preferred over mean due to the count of zeros in the data). The only exception was filling in values for Precipitation and Pressure variables, since many consecutive values were missing; for those values, the average of previous years was used to complete the data.
