@@ -74,7 +74,48 @@ A multilinear regression algorithm was explored for model creation, using the Li
 
 ### 5. Artificial Neural Networks
 
-Initially, artificial neural networks were trained using the three consolidated datasets: wind production, solar production, and consumption. After reviewing and taking into consideration the different consumption patterns of eight sectors, ANNs were then trained on the ten datasets. Recurrent neural networks (RNN) and long-short term memory models (LSTM) on Keras were trained and tuned. An additional pre-processing step to prepare the training data frame was applied: turning time series data into supervised data frame. More specifically, in this project, RNN and LSTM use a twenty-four-time step, or a day’s worth of data, to learn and ultimately make predictions. The final step applied to training and validation data was to reshape the data frame to have dimensions in the following order: number of samples, time-step size, number of features. Training RNN and LSTM models using Keras can be time-consuming due to multiple factors, for example: higher numbers of trainable parameters, or high numbers of training epochs. In an effort to see whether a model is a good fit, the initial trained models were trained with only fifty epochs. Model building and training started out with a simple model of [one input layer, one hidden layer, and one output layer]. The training process continued with adding layers and tuning the parameters, such as the number of nodes in each layer, activation function, loss function, optimizer, and performance metrics.
+Initially, artificial neural networks were trained using the three consolidated datasets: wind production, solar production, and consumption. After reviewing and taking into consideration the different consumption patterns of eight sectors, ANNs were then trained on the ten datasets. Recurrent neural networks (RNN) and long-short term memory models (LSTM) on Keras were trained and tuned. An additional pre-processing step to prepare the training data frame was applied: turning time series data into supervised data frame. More specifically, in this project, RNN and LSTM use a twenty-four-time step, or a day’s worth of data, to learn and ultimately make predictions. The final step applied to training and validation data was to reshape the data frame to have dimensions in the following order: number of samples, time-step size, number of features. 
+
+```
+# Reshape train/valid input data to be Keras-ready format [samples, timesteps, features]
+
+x_train = x_train.reshape((x_train.shape[0], 24, 2))
+x_valid = x_valid.reshape((x_valid.shape[0], 24, 2))
+print(x_train.shape, y_train.shape)
+print(x_valid.shape, y_valid.shape)
+```
+
+Training RNN and LSTM models using Keras can be time-consuming due to multiple factors, for example: higher numbers of trainable parameters, or high numbers of training epochs. In an effort to see whether a model is a good fit, the initial trained models were trained with only fifty epochs. Model building and training started out with a simple model of [one input layer, one hidden layer, and one output layer]. The training process continued with adding layers and tuning the parameters, such as the number of nodes in each layer, activation function, loss function, optimizer, and performance metrics.
+
+```
+# design neural net
+
+model = Sequential()
+model.add(LSTM(150, return_sequences=True, input_shape=(x_train.shape[1], x_train.shape[2])))
+model.add(Dropout(0.2))
+model.add(LSTM(300, return_sequences=True))
+model.add(Dropout(0.2))
+model.add(LSTM(300, return_sequences=False))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation = 'relu'))  #activations tried: linear, sigmoid, tanh, softmax, relu
+
+model.compile(loss='mse', 
+              optimizer='adam', 
+              metrics=['mae'])
+
+model.summary()
+```
+
+```
+#fit neural net
+
+history = model.fit(x_train, y_train, 
+                    epochs=50,
+                    batch_size=30,
+                    verbose=2, 
+                    shuffle=False, 
+                    validation_data=(x_valid, y_valid))
+```
 
 The model trained with the training set is validated with validation set, by looking at the output of the losses after each training epoch. The lower value of loss (approaching zero) and the faster the loss decreases, the better and faster a neural network model learns. Ideally, the sign of a potential good model is a continuously small gap (low level of oscillation) between the training’s losses and validation’s losses. While LSTM model showed that the losses were decreasing, there was a gap between training’s losses and validation’s losses, and the decrease was slow. RNN was less successful, as the losses shown oscillating pattern. Further effort of training didn’t return any ANN with higher potential. This led the project to make a decision of moving towards using ANNs run by Sci-kit learn. Sci-kit learn neural network function helped make the training process much simpler: data split with randomization of rows, no requirement to convert time series data into supervised data frame, smaller number of parameters to be tuned. Interestingly, the ANNs’ performances showed improvement and potential, but did not show as much success when evaluated against other algorithms experimented in this project.
 
