@@ -7,6 +7,7 @@
 The data used for this project originated from fourteen files of raw data regarding Power City's energy production and consumption. All production and consumption files include hourly data – twenty-four records per day. Weather conditions and calendar specifics between all files include:
 
 a. Weather Condition Features: solar elevation, cloud cover, dew point, humidity, precipitable water, temperature, visibility, wind speed, and pressure
+
 b. Calendar Day Features: day of the week, holiday, school day
 
 
