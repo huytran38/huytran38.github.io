@@ -48,7 +48,6 @@ consump_l = consump[consump.Sector == 'LODGING']
 consump_o = consump[consump.Sector == 'OFFICE']
 consump_r = consump[consump.Sector == 'RESIDENTIAL']
 consump_sar = consump[consump.Sector == 'STAND_ALONE_RETAIL']
-
 ```
 
 Feature engineering was used to create additional calendar variables (such as ‘Weekend’ and ‘Season’), and dummy variables were extracted from categorical variables (‘Month’, ‘Day’, ‘Day of week’). All files except for the scenario file were split into 80/20 train/test sets. Below is a summary table of the main four(4) aggregated datasets and their corresponding features. 
