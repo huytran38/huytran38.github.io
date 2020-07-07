@@ -5,7 +5,7 @@
 ### 1. The Data
 There are two data files, one for training and one for testing.
 
-The training dataset has 52,566 instances, across 14 variables, excluding datetime. Each instance has 14 measurements, among which **‘T (degC)’** is the target variable that I need to build a prediction model for. Additionally, each instance represents the 14 weather measurements of every consecutive hour, which is indicative that this is a time-series data. The test dataset consists of 17,447 instances. 
+The training dataset has 52,566 instances, across 14 variables, excluding datetime. Each instance has 14 measurements, among which **‘T (degC)’** is the target variable that I need to build a prediction model for. Additionally, the instances represent 14 weather measurements of every consecutive hour (1AM to 12AM), which indicates that this is a time-series data. The test dataset consists of 17,447 instances. 
 
 Unlike training set, test set has 336 columns, which is an aggregation of the 14 climate measurements across a period of 24 hours (a day). In other words, each test instance has a day worth of data. The test dataset was provided in such format so that it is ready for Keras Recurrent Network Model once it is ready to make predictions.
 
