@@ -10,7 +10,11 @@
 <img src="images/Capture5.PNG?raw=true"/>
 
 ---
-[Project 3 Title](http://example.com/)
+### [Timeseries Analysis of Madrid Air Quality](/sample_page2)
+<img src="images/PPT_Image.PNG?raw=true"/>
+
+---
+[Project 4 Title](http://example.com/)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
