@@ -11,7 +11,7 @@
 
 ---
 ### [Timeseries Analysis of Madrid Air Quality](/sample_page2)
-<img src="images/PPT_Image.PNG?raw=true"/>
+<img src="images/PPT_image.png?raw=true"/>
 
 ---
 [Project 4 Title](http://example.com/)
