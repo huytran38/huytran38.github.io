@@ -35,6 +35,7 @@ pyplot.show()
 </p>
 
 
+
 Line chart of variable T (Temperature line chart) demonstrates an annual pattern. It is worth noting that there are sets of variables that appear to have very similar pattern, such as: T -Tpot-Tdew; VPmax-VPact-VPdef; H2OC-rho. Could this be a signal that these variable sets indicate correlations?
 
 ```
