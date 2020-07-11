@@ -10,12 +10,38 @@ The training dataset has 52,566 instances, across 14 variables, excluding dateti
 Unlike training set, test set has 336 columns, which is an aggregation of the 14 climate measurements across a period of 24 hours (a day). In other words, each test instance has a day worth of data. The test dataset was provided in such format so that it is ready for Keras Recurrent Network Model once it is ready to make predictions.
 
 ### 2. Basic exploratory data analysis
-From the multivariate line chart (Multi-variables line chart), the first observation that stands out is the majority of climate measurements, except for ‘wv’, ‘maxwv’, and ‘wd’, have some rhythm or pattern over time. Line chart of variable T (Temperature line chart) demonstrates an annual pattern. It is worth noting that there are sets of variables that appear to have very similar pattern, such as: T -Tpot-Tdew; VPmax-VPact-VPdef; H2OC-rho. Could this be a signal that these variable sets indicate correlations? 
+From the multivariate line chart (Multi-variables line chart), the first observation that stands out is the majority of climate measurements, except for ‘wv’, ‘maxwv’, and ‘wd’, have some rhythm or pattern over time. 
+
+```
+# specify columns to plot
+fts = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+i = 1
+
+# plot each column
+pyplot.figure()
+for ft in fts:
+    pyplot.subplot(len(fts), 1, i)
+    pyplot.plot(values[:, ft])
+    pyplot.title(data_train.columns[ft], y=0.5, loc='right')
+    i += 1
+    pyplot.tick_params(axis='both', which='major', labelsize=8)
+    pyplot.suptitle('Multi-variables line chart')
+    
+pyplot.show()
+```
 
 <p align="center">
   <img src="images/Capture1.PNG?raw=true">
 </p>
 
+
+Line chart of variable T (Temperature line chart) demonstrates an annual pattern. It is worth noting that there are sets of variables that appear to have very similar pattern, such as: T -Tpot-Tdew; VPmax-VPact-VPdef; H2OC-rho. Could this be a signal that these variable sets indicate correlations?
+
+```
+# line graph of T (degC) of training set 
+data_train['T'].plot(linewidth=0.5)
+pyplot.suptitle('Temperature line chart')
+```
 
 <p align="center">
   <img src="images/Capture2.PNG?raw=true">
@@ -23,6 +49,26 @@ From the multivariate line chart (Multi-variables line chart), the first observa
 
 The correlation matrix (Correlation matrix) shows no strong positive correlation (the strongest is indicated by the color reddish pink, which is slightly higher than 0.25). However, there are candidates of reasonably high negative correlations (the strongest is indicated by the color dark blue, which is about -0.9). It appears that variable ‘rho’ has strong negative correlations with various variables, among those are T-Tpot-Tdew, and VPmax-VPact-VPdef. 
 
+```
+sns.set(style="white")
+
+# Compute the correlation matrix
+corr = data_train.corr()
+
+# Generate a mask for the upper triangle
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
+
+# Set up the matplotlib figure
+f, ax = pyplot.subplots(figsize=(11, 9))
+
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+
+# Draw the heatmap with the mask and correct aspect ratio
+sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0, square=True, linewidths=.5, cbar_kws={"shrink": .5})
+pyplot.suptitle('Correlation matrix')
+```
 
 <p align="center">
   <img src="images/Capture3.PNG?raw=true">
@@ -37,6 +83,17 @@ After using the function (mentioned earlier) to reframe training set to have 1 o
 
 ### 4. Final chosen model
 The first model that I trained turned out to be my best model. In terms of complexity, it was the simplest model of all the models that were experimented with. In terms of structure, this model has one layer of LSTM with 50 nodes, and the *input_shape* parameter was set to match the shape of the input from training set, which is (24, 14). The output layer is a Fully Connected layer, with 1 node, as we want one output for each instance. The *model.compile()* has three parameters passed into: Mean Absolute Error (mae) as loss function, optimizer (adam), and Mean Squared Error as performance metrics. Total trainable parameters are 13051. When calling *model.fit()* with training set, besides input (xtrain) and output (ytrain), there are 4 main parameters passed into: number of epochs (50), batch size (30), shuffle set to False as we don’t want the input to be randomized, and validation input (xvalid) and output (yvalid). Initially, my model performed well during the Kaggle competition, in terms of ranking. However, during the early week of submission, submitted models appeared to perform not as well as the professor’s sample model. This signaled that my model was actually not performing well. One important clue that line graph of 'train vs validation loss' (below) demonstrates is that there is a possibility of overfitting, as after 15 epochs, validation set starts to have higher losses than training set. In other words, during the 50 epochs of training the model, as error from training set is decreasing, error from validation set is increasing. As I experimented with other models, this model still had the highest score, thus I chose this as the final submission model.
+
+```
+# plot history of loss for train and valid sets
+pyplot.plot(history.history['loss'], label='train')
+pyplot.plot(history.history['val_loss'], label='valid')
+pyplot.title('model train vs validation loss')
+pyplot.ylabel('loss')
+pyplot.xlabel('epoch')
+pyplot.legend()
+pyplot.show()
+```
 
 <p align="center">
   <img src="images/Capture5.PNG?raw=true"/>
