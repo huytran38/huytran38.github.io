@@ -13,4 +13,10 @@
 - In addition, the list of 24 active  stations that are used for measurements are provided. Not every station has the same equipment, therefore each station was able to measure only a certain subset of particles.
 - Split 24 stations into 2 groups: inner and outer stations
 
+### 2. Methodology
+1.AR: forecasts the variable of interest (target variable) using a linear combination of past values of the variable
+2.MA: uses past forecast errors in a regression-like model to forecast variable of interest
+3.ARIMA
+4.SARIMA
+5.Linear Regressions with Trend, Seasonality and Quadratic
 
